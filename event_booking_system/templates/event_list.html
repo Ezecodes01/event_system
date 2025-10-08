@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Upcoming Events</h1>
+
+<div class="event-grid">
+  {% for event in events %}
+    <div class="event-card" {% if event.background_image %}style="background-image: url('{{ event.background_image.url }}'); background-size: cover; background-position: center;"{% endif %}>
+      <h2>{{ event.title }}</h2>
+      <p><strong>Date:</strong> {{ event.start_time|date:"M d, Y H:i" }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <p><strong>Price:</strong>
+        {% if event.price > 0 %}
+        ₦{{ event.price }}
+        {% else %}
+        Free
+        {% endif %}
+      </p>
+      <a href="{% url 'event_detail' event.id %}" class="btn">View Details</a>
+      <a href="{% url 'book_ticket' event.id %}" class="btn-primary">Book / Input Details</a>
+    </div>
+  {% empty %}
+  <p>No events available at the moment.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="auth-container">
+
+  <h2>Create Account</h2>
+  {% if error %}
+   <h4 style="color: red; text-align : center;">{{ error }}</h4>
+  {% endif %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="email">
+      <label for="">username</label>
+      <input type="text" name="username">
+    </div>
+
+
+    <div class="password">
+      <label for="">Password</label>
+      <input type="password" name="password1">
+    </div>
+
+    <div>
+      <label for="">PasswordConfirmation</label>
+      <input type="password" name="password2" id="">
+    </div>
+    <button type="submit" class="btn-primary btn-large">Register</button>
+  </form>
+  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+</div>
+{% endblock %}

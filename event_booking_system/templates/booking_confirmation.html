@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="ticket-container">
+  <h2>🎟️ Booking Confirmed!</h2>
+
+  <div class="ticket-card">
+    {% if ticket.event.background_image %}
+      <div style="background-image: url('{{ ticket.event.background_image.url }}'); background-size: cover; background-position: center; border-radius: 12px; padding: 20px;">
+        <h3>{{ ticket.event.title }}</h3>
+        <p><strong>Date:</strong> {{ ticket.event.start_time|date:"M d, Y H:i" }}</p>
+        <p><strong>Location:</strong> {{ ticket.event.location }}</p>
+        <p><strong>Booked By:</strong> {{ ticket.user.username }}</p>
+        <p><strong>Ticket ID:</strong> #{{ ticket.id }}</p>
+        <div class="ticket-footer">
+          <p>✅ Your booking was successful.</p>
+          <p>Show this ticket at the event entrance.</p>
+        </div>
+      </div>
+    {% else %}
+      <h3>{{ ticket.event.title }}</h3>
+      <p><strong>Date:</strong> {{ ticket.event.start_time|date:"M d, Y H:i" }}</p>
+      <p><strong>Location:</strong> {{ ticket.event.location }}</p>
+      <p><strong>Booked By:</strong> {{ ticket.user.username }}</p>
+      <p><strong>Ticket ID:</strong> #{{ ticket.id }}</p>
+      <div class="ticket-footer">
+        <p>✅ Your booking was successful.</p>
+        <p>Show this ticket at the event entrance.</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ticket-actions">
+    <a href="{% url 'my_bookings' %}" class="btn">My Bookings</a>
+    <a href="{% url 'event_list' %}" class="btn-primary">Browse More Events</a>
+  </div>
+</div>
+{% endblock %}

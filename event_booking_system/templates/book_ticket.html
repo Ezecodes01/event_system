@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="booking-container">
+  <h2>Book Ticket</h2>
+
+  <div class="event-summary">
+    {% if event.background_image %}
+      <div style="background-image: url('{{ event.background_image.url }}'); background-size: cover; background-position: center; border-radius: 12px; padding: 20px; color: white;">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Date:</strong> {{ event.start_time|date:"M d, Y H:i" }} – {{ event.end_time|date:"M d, Y H:i" }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Available Seats:</strong> {{ event.capacity }}</p>
+        <p><strong>Price:</strong>
+          {% if event.price > 0 %}
+            ₦{{ event.price }}
+          {% else %}
+            Free
+          {% endif %}
+        </p>
+      </div>
+    {% else %}
+      <h3>{{ event.title }}</h3>
+      <p><strong>Date:</strong> {{ event.start_time|date:"M d, Y H:i" }} – {{ event.end_time|date:"M d, Y H:i" }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <p><strong>Available Seats:</strong> {{ event.capacity }}</p>
+      <p><strong>Price:</strong>
+        {% if event.price > 0 %}
+          ₦{{ event.price }}
+        {% else %}
+          Free
+        {% endif %}
+      </p>
+    {% endif %}
+  </div>
+
+  <form method="post" class="booking-form">
+    {% csrf_token %}
+    <label for="quantity">Number of Tickets:</label>
+    <input type="number" name="quantity" id="quantity" min="1" max="{{ event.capacity }}" value="1" required>
+    <button type="submit" class="btn-primary btn-large">Confirm Booking</button>
+  </form>
+
+  <p><a href="{% url 'event_detail' event.id %}" class="btn">← Back to Event</a></p>
+</div>
+{% endblock %}

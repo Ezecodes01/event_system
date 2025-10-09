@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  #if os.getenv('DEBUG').lower() == 'true' else False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').strip().split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'event-system-1h9a.onrender.com').strip().split(',')
 
 
 # Application definition

@@ -1,6 +1,6 @@
 
 body {
-    background: #f5f7fa;
+     background-image: url("{% static 'image/eventa/event_booking_system/static/image/jonny-gios-2vVhfhbj5-s-unsplash.jpg' %}");
     color: #222;
     transition: background 0.3s, color 0.3s;
 }

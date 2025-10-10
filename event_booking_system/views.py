@@ -62,14 +62,18 @@ def book_ticket(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     if request.method == "POST":
         quantity = int(request.POST.get("quantity", 1))
+        attendee_name = request.POST.get("attendees", "")
+        phone_number = request.POST.get("phone", "")
 
         if event.capacity >= quantity and quantity > 0:
-            ticket = Ticket.objects.create(event=event, user=request.user, quantity=quantity)
+            ticket = Ticket.objects.create(event=event, user=request.user, quantity=quantity, attendee_name=attendee_name, phone_number=phone_number)
             event.capacity -= quantity
             event.save()
-            return redirect("booking_confirmation", ticket_id=ticket.id)
+            return redirect("booking_confirmation", ticket_id=ticket.id,)
 
     return render(request, "book_ticket.html", {"event": event})
+
+     
 
 
 @login_required

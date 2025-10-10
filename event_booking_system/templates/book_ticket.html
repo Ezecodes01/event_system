@@ -42,6 +42,8 @@
     <input type="text" name="customer_name" placeholder="Your Name" required>
     <label for="quantity">Number of Tickets:</label>
     <input type="number" name="quantity" id="quantity" min="1" max="{{ event.capacity }}" value="1" required>
+    <input type="text" name="attendees" id="attendees" placeholder="Attendees (comma-separated)" required>
+    <input type="number" name="phone" id="phone" placeholder="Your Phone Number" required>
     <button type="submit" class="btn-primary btn-large">Confirm Booking</button>
   </form>
 

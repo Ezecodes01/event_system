@@ -8,9 +8,12 @@
   {% for event in events %}
     <div class="event-card" {% if event.background_image %}style="background-image: url('{{ event.background_image.url }}'); background-size: cover; background-position: center;"{% endif %}>
       <h2>{{ event.title }}</h2>
+      <p><strong>Description:</strong> {{ event.description }}</p>
       <p><strong>Date:</strong> {{ event.start_time|date:"M d, Y H:i" }}</p>
       <p><strong>Location:</strong> {{ event.location }}</p>
       <p><strong>Price:</strong>
+      <p><strong>Attendees:</strong> {{ event.attendees.count }}</p> 
+      <p><strong>phonenumber:</strong> {{ event.phonenumber }}</p>
         {% if event.price > 0 %}
         ₦{{ event.price }}
         {% else %}

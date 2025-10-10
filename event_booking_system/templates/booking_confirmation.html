@@ -23,8 +23,8 @@
       <p><strong>Date:</strong> {{ ticket.event.start_time|date:"M d, Y H:i" }}</p>
       <p><strong>Location:</strong> {{ ticket.event.location }}</p>
       <p><strong>Booked By:</strong> {{ ticket.user.username }}</p>
-      <p><strong>Attendees:</strong> {{ ticket.attendees }}</p>
-      <p><strong>Phone Number:</strong> {{ ticket.user.phone_number }}</p>
+      <p><strong>Attendees:</strong> {{ ticket.attendee_name }}</p>
+      <p><strong>Phone Number:</strong> {{ ticket.phone_number }}</p>
       <p><strong>Ticket ID:</strong> #{{ ticket.id }}</p>
       <div class="ticket-footer">
         <p>✅ Your booking was successful.</p>
